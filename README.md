@@ -1,24 +1,60 @@
-How to run code:
-Clone the repo to get code and config.
+How to run code:(step by step procedure)
+Step 1: Clone the Repository
 
-Open the main notebook in Google Colab (or run scripts locally).
+Clone the repository to get the code and configuration files.
 
-Set runtime to Python 3 and GPU if needed.
+git clone https://github.com/<your-username>/<your-repo-name>.git
+cd <your-repo-name>
 
-Install dependencies
+🔹 Step 2: Open in Google Colab
 
-Mount Google Drive to persist datasets/models.
+Go to Google Colab
+.
 
-Provide API keys securely (do not commit them in code or repo).
+Click File → Open Notebook → GitHub.
 
-Download/prepare datasets into the data/ directory.
+Paste the repo URL and open the main .ipynb notebook.
 
-Run cells sequentially (recommended: Restart & Run All for reproducibility).
+🔹 Step 3: Set Runtime
 
-Save checkpoints and outputs to Drive for later use.
+In Colab, go to Runtime → Change runtime type.
 
-Verify with a small sample inference.
+Select Python 3 and choose GPU if required.
 
-Commit code changes (do not push large binaries).
+🔹 Step 4: Install Dependencies
 
-Record commit hash and pinned package versions for reproducibility.
+Run the following command in a notebook cell:
+
+pip install -r requirements.txt
+
+🔹 Step 5: Mount Google Drive
+
+To save models and outputs persistently:
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+🔹 Step 6: Provide API Keys (if required)
+
+Use secure input methods instead of hardcoding credentials:
+
+from getpass import getpass
+API_KEY = getpass("Enter API Key: ")
+
+🔹 Step 7: Download & Prepare Dataset
+
+Place datasets inside the data/ folder.
+
+If using external datasets, download them via wget, gdown, or APIs as shown in the notebook.
+
+🔹 Step 8: Run the Notebook
+
+Execute cells sequentially for correct results.
+
+Recommended: Runtime → Restart and run all for reproducibility.
+
+🔹 Step 9: Save Checkpoints & Outputs
+
+Save model weights and results for reuse:
+
+torch.save(model.state_dict(), '/content/drive/MyDrive/project/checkpoint.pt')
